@@ -1,0 +1,56 @@
+{
+  "extends": [
+    "airbnb-base",
+    "plugin:react/recommended"
+  ],
+  "plugins": [
+    "react"
+  ],
+  "env": {
+    "browser": true,
+    "jest": true
+  },
+  "rules": {
+    "max-len": [
+      "error",
+      {
+        "code": 150
+      }
+    ],
+    "no-param-reassign": [
+      "error",
+      {
+        "props": false
+      }
+    ],
+    "no-plusplus": "off",
+    "no-restricted-syntax": [
+      "error",
+      "LabeledStatement",
+      "WithStatement",
+      {
+        "selector": "MemberExpression[object.name='it'][property.name='only']",
+        "message": "it.only is forbidden"
+      },
+      {
+        "selector": "MemberExpression[object.name='describe'][property.name='only']",
+        "message": "describe.only is forbidden"
+      }
+    ],
+    "no-underscore-dangle": "off",
+    "class-methods-use-this": "off",
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": [
+          "tests/**",
+          "**/webpack.config.js",
+          "**/build/*.js"
+        ],
+        "optionalDependencies": false
+      }
+    ],
+    "import/prefer-default-export": "off",
+    "react/prop-types": 0
+  }
+}

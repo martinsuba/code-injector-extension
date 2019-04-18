@@ -4,16 +4,21 @@
   "homepage": "./",
   "private": true,
   "dependencies": {
-    "react": "^16.6.1",
-    "react-dom": "^16.6.1",
-    "react-scripts": "2.1.1"
+    "react": "^16.8.2",
+    "react-dom": "^16.8.2",
+    "react-redux": "^6.0.1",
+    "react-router-dom": "^4.3.1",
+    "react-scripts": "2.1.5",
+    "redux": "^4.0.1",
+    "uuid": "^3.3.2"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "install": "react-scripts-webpack-config-editor webpack.config.js"
+    "install": "react-scripts-webpack-config-editor webpack.config.js",
+    "lint": "eslint --ignore-path .eslintignore ."
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -25,6 +30,8 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^13.1.0",
     "react-scripts-webpack-config-editor": "^1.0.1"
   }
 }
