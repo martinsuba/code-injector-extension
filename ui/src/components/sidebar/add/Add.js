@@ -38,6 +38,7 @@ class Add extends Component {
       type,
       createdAt: Date.now(),
       updatedAt: null,
+      active: false,
       content: {},
     };
 

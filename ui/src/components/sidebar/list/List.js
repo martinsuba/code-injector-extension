@@ -14,7 +14,7 @@ class List extends Component {
     const { notes } = this.props;
     return (
       <ul className="list-group list-group-flush">
-        {notes.map(note => <ListItem key={note.id} note={note} />)}
+        {notes.map(note => <ListItem key={note.id} note={{ ...note }} setActiveNote={this.setActiveNote} />)}
       </ul>
     );
   }
