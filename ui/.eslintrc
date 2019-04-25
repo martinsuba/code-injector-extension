@@ -43,9 +43,8 @@
       "error",
       {
         "devDependencies": [
-          "tests/**",
           "**/webpack.config.js",
-          "**/build/*.js"
+          "**/store.js"
         ],
         "optionalDependencies": false
       }

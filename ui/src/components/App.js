@@ -2,18 +2,14 @@ import React, { Component, Fragment } from 'react';
 
 import './App.css';
 import Sidebar from './sidebar/Sidebar';
-import Form from './Form';
+// import Content from './content/Content';
 
 class App extends Component {
-  // constructor(props) {
-  //   super(props);
-  // }
-
   render() {
     return (
       <Fragment>
         <Sidebar />
-        <Form />
+        {/* <Content /> */}
       </Fragment>
     );
   }

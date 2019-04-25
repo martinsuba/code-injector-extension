@@ -1,16 +1,23 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-const mapStateToProps = state => ({ articles: state.articles });
+import ListItem from './list-item/ListItem';
 
-const List = ({ articles }) => (
-  <ul className="list-group list-group-flush">
-    {articles.map(el => (
-      <li className="list-group-item" key={el.id}>
-        {el.title}
-      </li>
-    ))}
-  </ul>
-);
+const mapStateToProps = state => ({ notes: state.notes });
+
+class List extends Component {
+  // constructor(props) {
+  //   super(props);
+  // }
+
+  render() {
+    const { notes } = this.props;
+    return (
+      <ul className="list-group list-group-flush">
+        {notes.map(note => <ListItem key={note.id} note={note} />)}
+      </ul>
+    );
+  }
+}
 
 export default connect(mapStateToProps)(List);

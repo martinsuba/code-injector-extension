@@ -1,21 +1,21 @@
-// src/js/components/Form.js
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import uuidv4 from 'uuid';
-import { addNote } from '../actions/actions';
+import { addNote } from '../../../actions/note-actions';
 
+const noteTypes = ['plain', 'todo', 'code'];
 const initialState = {
   title: '',
-  type: '',
+  type: noteTypes[0],
 };
 
 const mapDispatchToProps = dispatch => ({
-  addNote: article => dispatch(addNote(article)),
+  addNote: note => dispatch(addNote(note)),
 });
 
-class Form extends Component {
-  constructor() {
-    super();
+class Add extends Component {
+  constructor(props) {
+    super(props);
 
     this.state = initialState;
 
@@ -47,6 +47,17 @@ class Form extends Component {
 
   render() {
     const { title } = this.state;
+    const labels = noteTypes.map((type, index) => (
+      <label key={index}>
+        <input type="radio" id="type" value={type}
+          checked={this.state.type === type}
+          onChange={this.handleChange}
+          required
+        />
+        <span>{type}</span>
+        </label>
+    ));
+
     return (
       <form onSubmit={this.handleSubmit}>
         <div className="form-group">
@@ -57,14 +68,18 @@ class Form extends Component {
             id="title"
             value={title}
             onChange={this.handleChange}
+            required
           />
         </div>
+        <div className="form-group">
+          {labels}
+        </div>
         <button type="submit" className="btn btn-success btn-lg">
-          SAVE
+          Create
         </button>
       </form>
     );
   }
 }
 
-export default connect(null, mapDispatchToProps)(Form);
+export default connect(null, mapDispatchToProps)(Add);
