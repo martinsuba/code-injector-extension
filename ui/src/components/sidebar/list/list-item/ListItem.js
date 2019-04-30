@@ -35,7 +35,8 @@ class ListItem extends Component {
     }
   }
 
-  delete() {
+  delete(event) {
+    event.stopPropagation();
     const confirmDelete = window.confirm('Do you really want to delete the note?');
     if (confirmDelete) {
       this.props.deleteNote(this.props.note.id);

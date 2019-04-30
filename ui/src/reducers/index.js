@@ -23,8 +23,9 @@ const notesReducer = (state = initialState, action) => {
       return sortNotes(newState);
     }
     case DELETE_NOTE: {
-      const noteId = action.payload;
-      return state.filter(note => note.id !== noteId);
+      const deletedNoteId = action.payload;
+      const newState = state.filter(note => note.id !== deletedNoteId);
+      return sortNotes(newState);
     }
     case EDIT_NOTE: {
       const updatedNote = action.payload;
