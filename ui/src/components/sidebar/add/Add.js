@@ -39,7 +39,7 @@ class Add extends Component {
       createdAt: Date.now(),
       updatedAt: null,
       active: false,
-      content: {},
+      content: '',
     };
 
     this.props.addNote(newNote);

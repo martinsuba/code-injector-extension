@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import { PlainNote, CodeNote, TodoNote } from './note-types';
+
 const mapStateToProps = state => ({ notes: state.notes });
 
 class Content extends Component {
-  // constructor(props) {
-  //   super(props);
-  // }
-
   renderNote() {
     const { notes } = this.props;
     const activeNote = notes.find(note => note.active);

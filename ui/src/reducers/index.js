@@ -9,10 +9,10 @@ import { sortNotes } from '../utils';
 // const initialState = [];
 const initialState = [
   {
-    id: '736cd069-696b-41ac-bd17-6b78bc9e0c4f', title: 'a', type: 'plain', createdAt: 1556190211456, updatedAt: null, content: {}, active: false,
+    id: '736cd069-696b-41ac-bd17-6b78bc9e0c4f', title: 'a', type: 'plain', createdAt: 1556190211456, updatedAt: null, content: 'abc', active: false,
   },
   {
-    id: '03074e9a-36ea-4987-808f-d7a5a3488bb9', title: 'b', type: 'plain', createdAt: 1556190217009, updatedAt: null, content: {}, active: true,
+    id: '03074e9a-36ea-4987-808f-d7a5a3488bb9', title: 'b', type: 'plain', createdAt: 1556190217009, updatedAt: null, content: 'xyz', active: true,
   },
 ];
 
@@ -30,7 +30,8 @@ const notesReducer = (state = initialState, action) => {
     case EDIT_NOTE: {
       const updatedNote = action.payload;
       const newState = [...state.filter(note => note.id !== updatedNote.id), updatedNote];
-      return sortNotes(newState);
+      return newState;
+      // return sortNotes(newState);
     }
     case SET_ACTIVE_NOTE: {
       const noteId = action.payload;

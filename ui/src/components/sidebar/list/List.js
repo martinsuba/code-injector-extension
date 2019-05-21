@@ -6,10 +6,6 @@ import ListItem from './list-item/ListItem';
 const mapStateToProps = state => ({ notes: state.notes });
 
 class List extends Component {
-  // constructor(props) {
-  //   super(props);
-  // }
-
   render() {
     const { notes } = this.props;
     return (

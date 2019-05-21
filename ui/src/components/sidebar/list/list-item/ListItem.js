@@ -48,12 +48,14 @@ class ListItem extends Component {
   }
 
   handleEditNote() {
-    const note = {
-      ...this.props.note,
-      updatedAt: Date.now(),
-      title: this.state.title,
-    };
-    this.props.editNote(note);
+    if (this.state.title !== this.props.note.title) {
+      const note = {
+        ...this.props.note,
+        updatedAt: Date.now(),
+        title: this.state.title,
+      };
+      this.props.editNote(note);
+    }
     this.changeEditMode();
   }
 
