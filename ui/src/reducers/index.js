@@ -3,18 +3,10 @@ import { combineReducers } from 'redux';
 import {
   ADD_NOTE, DELETE_NOTE, EDIT_NOTE, SET_ACTIVE_NOTE,
 } from '../actions/action-types';
-import { sortNotes } from '../utils';
+import { sortNotes, loadState } from '../utils';
 
-// NOTE: mock for dev
-// const initialState = [];
-const initialState = [
-  {
-    id: '736cd069-696b-41ac-bd17-6b78bc9e0c4f', site: 'a', createdAt: 1556190211456, updatedAt: null, content: 'abc', active: false,
-  },
-  {
-    id: '03074e9a-36ea-4987-808f-d7a5a3488bb9', site: 'b', createdAt: 1556190217009, updatedAt: null, content: 'xyz', active: true,
-  },
-];
+// TODO: only notes state, refactor
+const initialState = loadState().notes || [];
 
 const notesReducer = (state = initialState, action) => {
   switch (action.type) {
