@@ -13,6 +13,7 @@ class Code extends Component {
 
     this.state = {
       content: props.code.content,
+      site: props.code.site,
     };
 
     this.timeoutId = null;
@@ -59,10 +60,16 @@ class Code extends Component {
 
   render() {
     return (
-      <textarea
-        onChange={this.handleContentChange}
-        value={this.state.content}
-      />
+      <div>
+        <input
+          onChange={this.handleContentChange}
+          value={this.state.site}
+        />
+        <textarea
+          onChange={this.handleContentChange}
+          value={this.state.content}
+        />
+      </div>
     );
   }
 }
