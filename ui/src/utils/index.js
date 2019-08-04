@@ -1,8 +1,8 @@
 export function sortNotes(notes) {
   return notes
     .sort((a, b) => {
-      const timeA = a.updatedAt || a.createdAt;
-      const timeB = b.updatedAt || b.createdAt;
+      const timeA = a.createdAt;
+      const timeB = b.createdAt;
       return timeB - timeA;
     })
     .map((note, index) => {

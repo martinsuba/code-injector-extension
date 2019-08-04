@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { PlainNote, CodeNote, TodoNote } from './note-types';
+import CodeNote from './note-types/CodeNote';
 
 const mapStateToProps = state => ({ notes: state.notes });
 
@@ -10,16 +10,7 @@ class Content extends Component {
     const { notes } = this.props;
     const activeNote = notes.find(note => note.active);
 
-    switch (activeNote.type) {
-      case 'plain':
-        return <PlainNote note={activeNote} />;
-      case 'todo':
-        return <TodoNote note={activeNote} />;
-      case 'code':
-        return <CodeNote note={activeNote} />;
-      default:
-        throw new Error('Invalid type.');
-    }
+    return <CodeNote note={activeNote} />;
   }
 
   render() {

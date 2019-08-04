@@ -35,7 +35,7 @@ class CodeNote extends Component {
 
         this.timeoutId = setTimeout(() => {
           this.saveContent(content, note);
-        }, 5000);
+        }, 1000);
       }
     });
   }
