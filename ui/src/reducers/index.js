@@ -1,38 +1,38 @@
 import { combineReducers } from 'redux';
 
 import {
-  ADD_NOTE, DELETE_NOTE, EDIT_NOTE, SET_ACTIVE_NOTE,
+  ADD_CODE, DELETE_CODE, EDIT_CODE, SET_ACTIVE_CODE,
 } from '../actions/action-types';
-import { sortNotes, loadState } from '../utils';
+import { sortCodes, loadState, setFirstActive } from '../utils';
 
-// TODO: only notes state, refactor
-const initialState = loadState().notes || [];
+// TODO: only codes state, refactor
+const initialState = loadState().codes || [];
 
-const notesReducer = (state = initialState, action) => {
+const codesReducer = (state = initialState, action) => {
   switch (action.type) {
-    case ADD_NOTE: {
+    case ADD_CODE: {
       const newState = [...state, action.payload];
-      return sortNotes(newState);
+      return setFirstActive(sortCodes(newState));
     }
-    case DELETE_NOTE: {
-      const deletedNoteId = action.payload;
-      const newState = state.filter(note => note.id !== deletedNoteId);
-      return sortNotes(newState);
+    case DELETE_CODE: {
+      const deletedCode = action.payload;
+      const newState = state.filter(code => code.id !== deletedCode.id);
+      return deletedCode.active ? setFirstActive(sortCodes(newState)) : sortCodes(newState);
     }
-    case EDIT_NOTE: {
-      const updatedNote = action.payload;
-      const newState = [...state.filter(note => note.id !== updatedNote.id), updatedNote];
-      return sortNotes(newState);
+    case EDIT_CODE: {
+      const updatedCode = action.payload;
+      const newState = [...state.filter(code => code.id !== updatedCode.id), updatedCode];
+      return sortCodes(newState);
     }
-    case SET_ACTIVE_NOTE: {
-      const noteId = action.payload;
-      return state.map((note) => {
-        if (note.id === noteId) {
-          note.active = true;
+    case SET_ACTIVE_CODE: {
+      const codeId = action.payload;
+      return state.map((code) => {
+        if (code.id === codeId) {
+          code.active = true;
         } else {
-          note.active = false;
+          code.active = false;
         }
-        return note;
+        return code;
       });
     }
     default:
@@ -41,7 +41,7 @@ const notesReducer = (state = initialState, action) => {
 };
 
 const reducers = combineReducers({
-  notes: notesReducer,
+  codes: codesReducer,
 });
 
 export default reducers;

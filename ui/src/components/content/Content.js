@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import CodeNote from './note-types/CodeNote';
+import Code from './Code';
 
-const mapStateToProps = state => ({ notes: state.notes });
+const mapStateToProps = state => ({ codes: state.codes });
 
 class Content extends Component {
-  renderNote() {
-    const { notes } = this.props;
-    const activeNote = notes.find(note => note.active);
+  renderCode() {
+    const { codes } = this.props;
+    const activeCode = codes.find(code => code.active);
 
-    return <CodeNote note={activeNote} />;
+    return <Code code={activeCode} />;
   }
 
   render() {
-    return this.renderNote();
+    return this.renderCode();
   }
 }
 

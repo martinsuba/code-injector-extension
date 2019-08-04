@@ -3,14 +3,14 @@ import { connect } from 'react-redux';
 
 import ListItem from './list-item/ListItem';
 
-const mapStateToProps = state => ({ notes: state.notes });
+const mapStateToProps = state => ({ codes: state.codes });
 
 class List extends Component {
   render() {
-    const { notes } = this.props;
+    const { codes } = this.props;
     return (
       <ul className="list-group list-group-flush">
-        {notes.map(note => <ListItem key={note.id} note={{ ...note }} />)}
+        {codes.map(code => <ListItem key={code.id} code={{ ...code }} />)}
       </ul>
     );
   }

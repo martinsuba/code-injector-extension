@@ -1,17 +1,21 @@
-export function sortNotes(notes) {
-  return notes
+export function sortCodes(codes) {
+  return codes
     .sort((a, b) => {
       const timeA = a.createdAt;
       const timeB = b.createdAt;
       return timeB - timeA;
-    })
-    .map((note, index) => {
+    });
+}
+
+export function setFirstActive(codes) {
+  return codes
+    .map((code, index) => {
       if (index === 0) {
-        note.active = true;
+        code.active = true;
       } else {
-        note.active = false;
+        code.active = false;
       }
-      return note;
+      return code;
     });
 }
 

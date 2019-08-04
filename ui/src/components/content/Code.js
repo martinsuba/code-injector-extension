@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { editNote } from '../../../actions/note-actions';
+import { editCode } from '../../actions/code-actions';
 
 const mapDispatchToProps = dispatch => ({
-  editNote: note => dispatch(editNote(note)),
+  editCode: code => dispatch(editCode(code)),
 });
 
-class CodeNote extends Component {
+class Code extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      content: props.note.content,
+      content: props.code.content,
     };
 
     this.timeoutId = null;
@@ -22,8 +22,8 @@ class CodeNote extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.note !== prevProps.note) {
-      this.setState({ content: this.props.note.content });
+    if (this.props.code !== prevProps.code) {
+      this.setState({ content: this.props.code.content });
     }
   }
 
@@ -31,27 +31,27 @@ class CodeNote extends Component {
     this.setState({ content: event.target.value }, () => {
       if (this.timeoutId == null) {
         const { content } = this.state;
-        const { note } = this.props;
+        const { code } = this.props;
 
         this.timeoutId = setTimeout(() => {
-          this.saveContent(content, note);
+          this.saveContent(content, code);
         }, 1000);
       }
     });
   }
 
-  saveContent(content, note) {
-    if (note.id !== this.props.note.id) {
-      note.active = false;
+  saveContent(content, code) {
+    if (code.id !== this.props.code.id) {
+      code.active = false;
     }
 
-    const newNote = {
-      ...note,
+    const newCode = {
+      ...code,
       content,
       updatedAt: Date.now(),
     };
 
-    this.props.editNote(newNote);
+    this.props.editCode(newCode);
 
     clearTimeout(this.timeoutId);
     this.timeoutId = null;
@@ -67,4 +67,4 @@ class CodeNote extends Component {
   }
 }
 
-export default connect(null, mapDispatchToProps)(CodeNote);
+export default connect(null, mapDispatchToProps)(Code);

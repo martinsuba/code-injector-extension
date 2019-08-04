@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import './ListItem.css';
-import { editNote, deleteNote, setActiveNote } from '../../../../actions/note-actions';
+import { editCode, deleteCode, setActiveCode } from '../../../../actions/code-actions';
 
-const mapStateToProps = state => ({ activeNote: state.activeNote });
+const mapStateToProps = state => ({ activeCode: state.activeCode });
 
 const mapDispatchToProps = dispatch => ({
-  deleteNote: noteId => dispatch(deleteNote(noteId)),
-  editNote: note => dispatch(editNote(note)),
-  setActiveNote: noteId => dispatch(setActiveNote(noteId)),
+  deleteCode: code => dispatch(deleteCode(code)),
+  editCode: code => dispatch(editCode(code)),
+  setActiveCode: codeId => dispatch(setActiveCode(codeId)),
 });
 
 class ListItem extends Component {
@@ -17,43 +17,43 @@ class ListItem extends Component {
     super(props);
 
     this.state = {
-      site: this.props.note.site,
-      active: this.props.note.active,
+      site: this.props.code.site,
+      active: this.props.code.active,
     };
 
     this.delete = this.delete.bind(this);
-    this.setActiveNote = this.setActiveNote.bind(this);
+    this.setActiveCode = this.setActiveCode.bind(this);
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.note !== prevProps.note) {
-      this.setState({ active: this.props.note.active });
+    if (this.props.code !== prevProps.code) {
+      this.setState({ active: this.props.code.active });
     }
   }
 
   delete(event) {
     event.stopPropagation();
-    const confirmDelete = window.confirm('Do you really want to delete the note?');
+    const confirmDelete = window.confirm('Do you really want to delete the code?');
     if (confirmDelete) {
-      this.props.deleteNote(this.props.note.id);
+      this.props.deleteCode(this.props.code);
     }
   }
 
-  setActiveNote() {
-    this.props.setActiveNote(this.props.note.id);
+  setActiveCode() {
+    this.props.setActiveCode(this.props.code.id);
   }
 
   render() {
     return (
       <li
         className={this.state.active ? 'active' : null}
-        onClick={this.setActiveNote}
-        key={this.props.note.id}
+        onClick={this.setActiveCode}
+        key={this.props.code.id}
       >
-        <span className="note-title">
+        <span className="code-title">
           {this.state.site}
         </span>
-        <span className="note-options">
+        <span className="code-options">
           <button onClick={this.delete} type="button">x</button>
         </span>
       </li>

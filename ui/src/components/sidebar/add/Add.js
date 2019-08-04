@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import uuidv4 from 'uuid';
-import { addNote } from '../../../actions/note-actions';
+import { addCode } from '../../../actions/code-actions';
 
 const mapDispatchToProps = dispatch => ({
-  addNote: note => dispatch(addNote(note)),
+  addCode: code => dispatch(addCode(code)),
 });
 
 class Add extends Component {
@@ -17,7 +17,7 @@ class Add extends Component {
   handleSubmit(event) {
     event.preventDefault();
 
-    const newNote = {
+    const newCode = {
       id: uuidv4(),
       site: 'new site',
       createdAt: Date.now(),
@@ -26,7 +26,7 @@ class Add extends Component {
       content: 'add here',
     };
 
-    this.props.addNote(newNote);
+    this.props.addCode(newCode);
   }
 
   render() {
