@@ -18,30 +18,33 @@ class Code extends Component {
 
     this.timeoutId = null;
 
-    this.handleContentChange = this.handleContentChange.bind(this);
+    this.handleCodeChange = this.handleCodeChange.bind(this);
     this.saveContent = this.saveContent.bind(this);
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.code !== prevProps.code) {
-      this.setState({ content: this.props.code.content });
+      this.setState({
+        content: this.props.code.content,
+        site: this.props.code.site,
+      });
     }
   }
 
-  handleContentChange(event) {
-    this.setState({ content: event.target.value }, () => {
+  handleCodeChange(event) {
+    const { name, value } = event.target;
+    this.setState({ [name]: value }, () => {
       if (this.timeoutId == null) {
-        const { content } = this.state;
-        const { code } = this.props;
-
         this.timeoutId = setTimeout(() => {
-          this.saveContent(content, code);
+          const { content, site } = this.state;
+          const { code } = this.props;
+          this.saveContent({ content, site }, code);
         }, 1000);
       }
     });
   }
 
-  saveContent(content, code) {
+  saveContent({ content, site }, code) {
     if (code.id !== this.props.code.id) {
       code.active = false;
     }
@@ -49,6 +52,7 @@ class Code extends Component {
     const newCode = {
       ...code,
       content,
+      site,
       updatedAt: Date.now(),
     };
 
@@ -60,16 +64,18 @@ class Code extends Component {
 
   render() {
     return (
-      <div>
+      <form>
         <input
-          onChange={this.handleContentChange}
+          name="site"
+          onChange={this.handleCodeChange}
           value={this.state.site}
         />
         <textarea
-          onChange={this.handleContentChange}
+          name="content"
+          onChange={this.handleCodeChange}
           value={this.state.content}
         />
-      </div>
+      </form>
     );
   }
 }
