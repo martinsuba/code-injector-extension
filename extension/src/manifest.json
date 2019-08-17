@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
-  "name": "Chrome-Notes",
-  "description": "Create description",
+  "name": "code-injector",
+  "description": "Extension for JS & style injecting into the speicified website.",
   "version": "0.0.1",
   "background": {
     "page": "background.html",
@@ -15,7 +15,22 @@
   },
   "content_security_policy": "script-src 'self' 'sha256-IThiKMnsg0UHaLmP7sJxZpd/ohvINImwjxFJyxGFSlk='; object-src 'self'",
   "permissions": [
-    "tabs"
+    "tabs",
+    "storage",
+    "activeTab",
+    "*://*/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "run_at": "document_idle",
+      "js": [
+        "content-script.js"
+      ],
+      "all_frames": false
+    }
   ],
   "icons": {
     "32": "icons/icon32.png",

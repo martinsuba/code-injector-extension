@@ -19,23 +19,13 @@ export function setFirstActive(codes) {
     });
 }
 
-export function loadState() {
-  try {
-    const serializedState = localStorage.getItem('se_state');
-    if (serializedState === null) {
-      return undefined;
-    }
-    return JSON.parse(serializedState);
-  } catch (err) {
-    return undefined;
-  }
-}
-
-export function saveState(state) {
-  try {
-    const serializedState = JSON.stringify(state);
-    localStorage.setItem('se_state', serializedState);
-  } catch (err) {
-    console.error(err);
-  }
+export function debounce(func, delay) {
+  let inDebounce;
+  return function abc() {
+    const context = this;
+    // eslint-disable-next-line prefer-rest-params
+    const args = arguments;
+    clearTimeout(inDebounce);
+    inDebounce = setTimeout(() => func.apply(context, args), delay);
+  };
 }

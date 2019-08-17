@@ -1,5 +1,4 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const jsLoader = {
@@ -17,14 +16,14 @@ const jsLoader = {
 };
 
 const plugins = [
-  new HtmlWebpackPlugin({
-    filename: './background.html',
-    template: './background.html',
-    title: 'Background Page'
-  }),
   new CopyWebpackPlugin([
     {
       from: './manifest.json',
+      to: './',
+      toType: 'dir'
+    },
+    {
+      from: './background.html',
       to: './',
       toType: 'dir'
     }
@@ -42,13 +41,6 @@ const plugins = [
       to: './ui/',
       toType: 'dir'
     }
-  ]),
-  new CopyWebpackPlugin([
-    {
-      from: path.resolve(__dirname, '../ui/public/services.js'),
-      to: './',
-      toType: 'dir'
-    }
   ])
 ];
 
@@ -56,7 +48,8 @@ module.exports = {
   mode: 'none',
   context: path.resolve(__dirname, 'src'),
   entry: {
-    js: './background.js'
+    background: './background.js',
+    'content-script': './content-script.js'
   },
   resolve: {
     extensions: ['.js'],
@@ -66,11 +59,8 @@ module.exports = {
     ]
   },
   output: {
-    filename: 'background.js',
+    filename: '[name].js',
     path: path.resolve(__dirname, 'build')
-  },
-  externals: {
-    'external-services': 'Services'
   },
   plugins,
   module: {

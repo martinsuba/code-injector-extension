@@ -17,7 +17,6 @@ class ListItem extends Component {
     super(props);
 
     this.state = {
-      site: this.props.code.site,
       active: this.props.code.active,
     };
 
@@ -40,6 +39,9 @@ class ListItem extends Component {
   }
 
   setActiveCode() {
+    if (this.state.active) {
+      return;
+    }
     this.props.setActiveCode(this.props.code.id);
   }
 
@@ -51,7 +53,7 @@ class ListItem extends Component {
         key={this.props.code.id}
       >
         <span className="code-title">
-          {this.state.site}
+          {this.props.code.site}
         </span>
         <span className="code-options">
           <button onClick={this.delete} type="button">x</button>

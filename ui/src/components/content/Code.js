@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { editCode } from '../../actions/code-actions';
+import { debounce } from '../../utils';
 
 const mapDispatchToProps = dispatch => ({
   editCode: code => dispatch(editCode(code)),
@@ -16,14 +17,14 @@ class Code extends Component {
       site: props.code.site,
     };
 
-    this.timeoutId = null;
+    this.saveContentDebounced = debounce(this.saveContent, 1000);
 
     this.handleCodeChange = this.handleCodeChange.bind(this);
     this.saveContent = this.saveContent.bind(this);
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.code !== prevProps.code) {
+    if (this.props.code.id !== prevProps.code.id) {
       this.setState({
         content: this.props.code.content,
         site: this.props.code.site,
@@ -34,13 +35,9 @@ class Code extends Component {
   handleCodeChange(event) {
     const { name, value } = event.target;
     this.setState({ [name]: value }, () => {
-      if (this.timeoutId == null) {
-        this.timeoutId = setTimeout(() => {
-          const { content, site } = this.state;
-          const { code } = this.props;
-          this.saveContent({ content, site }, code);
-        }, 1000);
-      }
+      const { content, site } = this.state;
+      const { code } = this.props;
+      this.saveContentDebounced({ content, site }, code);
     });
   }
 
@@ -56,10 +53,8 @@ class Code extends Component {
       updatedAt: Date.now(),
     };
 
+    console.log(newCode.content);
     this.props.editCode(newCode);
-
-    clearTimeout(this.timeoutId);
-    this.timeoutId = null;
   }
 
   render() {

@@ -7,7 +7,7 @@ const mapStateToProps = state => ({ codes: state.codes });
 
 class List extends Component {
   render() {
-    const { codes } = this.props;
+    const { codes: { items: codes } } = this.props;
     return (
       <ul className="list-group list-group-flush">
         {codes.map(code => <ListItem key={code.id} code={{ ...code }} />)}

@@ -3,12 +3,21 @@
     "airbnb-base",
     "plugin:react/recommended"
   ],
+  "globals": {
+    "chrome": true,
+  },
   "plugins": [
     "react"
   ],
   "env": {
     "browser": true,
-    "jest": true
+    "jest": true,
+    "webextensions": true,
+  },
+  "settings": {
+    "import/core-modules": [
+      "external-services"
+    ]
   },
   "rules": {
     "max-len": [
