@@ -27,6 +27,7 @@ class Code extends Component {
 
     this.handleCodeChange = this.handleCodeChange.bind(this);
     this.saveContent = this.saveContent.bind(this);
+    this.validateSite = this.validateSite.bind(this);
   }
 
   componentDidUpdate(prevProps) {
@@ -38,12 +39,31 @@ class Code extends Component {
     }
   }
 
+  isSiteValid(value) {
+    if (!value) {
+      return false;
+    }
+
+    return true;
+  }
+
+  validateSite({ target }) {
+    const { value } = target;
+    if (!this.isSiteValid(value)) {
+      window.alert('Site is required.');
+      // NOTE: race condition between alert and focus -> setTimeout
+      setTimeout(() => target.focus());
+    }
+  }
+
   handleCodeChange(event) {
-    console.log(event);
     const { name, value } = event.target;
     this.setState({ [name]: value }, () => {
       const { content, site } = this.state;
       const { code } = this.props;
+      if (!this.isSiteValid(site)) {
+        return;
+      }
       this.saveContentDebounced({ content, site }, code);
     });
   }
@@ -73,6 +93,7 @@ class Code extends Component {
             name="site"
             onChange={this.handleCodeChange}
             value={this.state.site}
+            onBlur={this.validateSite}
           />
         </div>
         <div className="content-input">
