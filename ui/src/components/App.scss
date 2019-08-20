@@ -1,0 +1,18 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+}
+
+.sidebar {
+  width: 300px;
+  background-color: #262830;
+}
+
+.content {
+  display: flex;
+  height: 100%;
+  flex: 1;
+  flex-direction: column;
+  background: #131418;
+}

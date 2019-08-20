@@ -1,13 +1,12 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import List from './list/List';
 import Add from './add/Add';
 
 const Sidebar = () => (
-  <Fragment>
-    <h2>Sidebar</h2>
+  <div className="sidebar">
     <Add />
     <List />
-  </Fragment>
+  </div>
 );
 
 export default Sidebar;

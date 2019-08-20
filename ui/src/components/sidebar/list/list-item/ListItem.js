@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import './ListItem.css';
 import { editCode, deleteCode, setActiveCode } from '../../../../actions/code-actions';
+
+import { ReactComponent as DeleteImage } from '../../../../assets/images/x-circle.svg';
 
 const mapStateToProps = state => ({ activeCode: state.activeCode });
 
@@ -56,7 +57,9 @@ class ListItem extends Component {
           {this.props.code.site}
         </span>
         <span className="code-options">
-          <button onClick={this.delete} type="button">x</button>
+          <button className="button-delete" onClick={this.delete} type="button">
+            <DeleteImage />
+          </button>
         </span>
       </li>
     );

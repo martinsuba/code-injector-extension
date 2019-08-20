@@ -18,7 +18,11 @@ class Content extends Component {
   }
 
   render() {
-    return this.renderCode();
+    return (
+      <div className="content">
+        {this.renderCode()}
+      </div>
+    );
   }
 }
 

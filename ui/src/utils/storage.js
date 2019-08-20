@@ -3,18 +3,18 @@ import { fetchCodes, fetchCodesPending, fetchCodesError } from '../actions/code-
 const STORAGE_NAME = 'SE_STATE';
 
 // NOTE: for developing UI without extension storage
-// const stateMock = {
-//   codes: {
-//     items: [
-//       {
-//         id: '736cd069-696b-41ac-bd17-6b78bc9e0c4f', site: 'a', createdAt: 1556190211456, updatedAt: null, content: 'abc', active: false,
-//       },
-//       {
-//         id: '03074e9a-36ea-4987-808f-d7a5a3488bb9', site: 'b', createdAt: 1556190217009, updatedAt: null, content: 'xyz', active: true,
-//       },
-//     ],
-//   },
-// };
+const stateMock = {
+  codes: {
+    items: [
+      {
+        id: '736cd069-696b-41ac-bd17-6b78bc9e0c4f', site: 'a', createdAt: 1556190211456, updatedAt: null, content: 'abc', active: false,
+      },
+      {
+        id: '03074e9a-36ea-4987-808f-d7a5a3488bb9', site: 'b', createdAt: 1556190217009, updatedAt: null, content: 'xyz', active: true,
+      },
+    ],
+  },
+};
 
 async function loadState() {
   return new Promise((resolve, reject) => {
@@ -23,8 +23,8 @@ async function loadState() {
         resolve(state);
       });
     } catch (err) {
-      reject(err);
-      // resolve(stateMock);
+      // reject(err);
+      resolve(stateMock);
     }
   });
 }

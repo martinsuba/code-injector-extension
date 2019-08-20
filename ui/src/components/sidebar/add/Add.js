@@ -3,6 +3,9 @@ import { connect } from 'react-redux';
 import uuidv4 from 'uuid';
 import { addCode } from '../../../actions/code-actions';
 
+import { ReactComponent as PlusCircle } from '../../../assets/images/plus-circle.svg';
+import './Add.scss';
+
 const mapDispatchToProps = dispatch => ({
   addCode: code => dispatch(addCode(code)),
 });
@@ -31,9 +34,9 @@ class Add extends Component {
 
   render() {
     return (
-      <button type="submit" className="btn btn-success btn-lg" onClick={this.handleSubmit}>
-          Create
-        </button>
+      <button type="submit" className="add-button" onClick={this.handleSubmit}>
+        <PlusCircle />
+      </button>
     );
   }
 }

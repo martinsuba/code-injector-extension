@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 // import Services from 'external-services';
 
-import './App.css';
+import './App.scss';
 import Sidebar from './sidebar/Sidebar';
 import Content from './content/Content';
 import { getCodes } from '../utils/storage';
@@ -23,10 +23,10 @@ class App extends Component {
       return (<div>loading</div>);
     }
     return (
-      <Fragment>
+      <div className="container">
         <Sidebar />
         <Content />
-      </Fragment>
+      </div>
     );
   }
 }

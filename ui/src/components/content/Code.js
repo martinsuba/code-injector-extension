@@ -1,8 +1,14 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
+import Editor from 'react-simple-code-editor';
+import { highlight, languages } from 'prismjs/components/prism-core';
+import 'prismjs/components/prism-clike';
+import 'prismjs/components/prism-javascript';
 
 import { editCode } from '../../actions/code-actions';
 import { debounce } from '../../utils';
+
+import './Code.scss';
 
 const mapDispatchToProps = dispatch => ({
   editCode: code => dispatch(editCode(code)),
@@ -33,6 +39,7 @@ class Code extends Component {
   }
 
   handleCodeChange(event) {
+    console.log(event);
     const { name, value } = event.target;
     this.setState({ [name]: value }, () => {
       const { content, site } = this.state;
@@ -53,24 +60,40 @@ class Code extends Component {
       updatedAt: Date.now(),
     };
 
-    console.log(newCode.content);
     this.props.editCode(newCode);
   }
 
   render() {
     return (
-      <form>
-        <input
-          name="site"
-          onChange={this.handleCodeChange}
-          value={this.state.site}
-        />
-        <textarea
-          name="content"
-          onChange={this.handleCodeChange}
-          value={this.state.content}
-        />
-      </form>
+      <Fragment>
+        <div className="site-input">
+          <label htmlFor="site">Site:</label>
+          <input
+            id="site"
+            name="site"
+            onChange={this.handleCodeChange}
+            value={this.state.site}
+          />
+        </div>
+        <div className="content-input">
+          <label htmlFor="content">Code:</label>
+          <Editor
+            id="content"
+            name="content"
+            onValueChange={code => this.handleCodeChange({ target: { value: code, name: 'content' } })}
+            value={this.state.content}
+            highlight={code => highlight(code, languages.js)}
+            padding={10}
+            style={{
+              fontFamily: 'Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace',
+              fontSize: 13,
+              backgroundColor: '#262830',
+              fontWeight: 600,
+              height: '100%',
+            }}
+          />
+        </div>
+      </Fragment>
     );
   }
 }
