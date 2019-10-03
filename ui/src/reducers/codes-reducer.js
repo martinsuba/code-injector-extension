@@ -3,7 +3,12 @@ import {
 } from '../actions/action-types';
 import { sortCodes, setFirstActive } from '../utils';
 
-export default function codesReducer(state = { loading: false, items: [] }, action) {
+const initialState = {
+  loading: false,
+  items: [],
+};
+
+export default function codesReducer(state = initialState, action) {
   switch (action.type) {
     case ADD_CODE: {
       const codes = setFirstActive(sortCodes([...state.items, action.payload]));
@@ -66,6 +71,6 @@ export default function codesReducer(state = { loading: false, items: [] }, acti
       };
     }
     default:
-      return state;
+      throw new Error(`Unknown action type: ${action.type}`);
   }
 }

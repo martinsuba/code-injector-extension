@@ -15,5 +15,4 @@ export default async function injectCode({ url, tabId }) {
       executeScript({ tabId, content });
     }
   });
-  console.log(codes);
 }

@@ -1,0 +1,34 @@
+.preloader-container {
+  background: #131418;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.preloader-animation {
+  color: #131418;
+}
+
+$d: 2em;
+$t: 1.5s;
+
+.dot {
+	background: white;
+
+	&, &:after {
+		display: inline-block;
+		width: $d; height: $d;
+		border-radius: 50%;
+		animation: a $t calc(((var(--i) + var(--o, 0))/var(--n) - 1)*#{$t}) infinite
+	}
+
+	&:after {
+		--o: 1;
+		background: currentcolor;
+		content: ''
+	}
+}
+
+@keyframes a { 0%, 50% { transform: scale(0) } }

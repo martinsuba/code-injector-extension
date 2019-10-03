@@ -11,7 +11,12 @@ class Content extends Component {
     const activeCode = codes.find(code => code.active);
 
     if (activeCode == null) {
-      return <div>no codes</div>;
+      return (
+        <div style={{ margin: '20px', fontWeight: 600 }}>
+          <div>Nothing here..</div>
+          <div>← Add first code.</div>
+        </div>
+      );
     }
 
     return <Code code={activeCode} />;

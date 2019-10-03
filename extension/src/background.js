@@ -6,7 +6,6 @@ chrome.browserAction.onClicked.addListener(() => {
 
 chrome.runtime.onMessage.addListener((request, sender, /* sendResponse */) => {
   const { id } = request;
-  console.log(sender);
 
   switch (id) {
     case 'INIT': {

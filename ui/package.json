@@ -20,7 +20,6 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "install": "react-scripts-webpack-config-editor webpack.config.js",
     "lint": "eslint --ignore-path .eslintignore ."
   },
   "eslintConfig": {
