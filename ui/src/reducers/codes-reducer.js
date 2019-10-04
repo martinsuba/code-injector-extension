@@ -71,6 +71,6 @@ export default function codesReducer(state = initialState, action) {
       };
     }
     default:
-      throw new Error(`Unknown action type: ${action.type}`);
+      return state;
   }
 }

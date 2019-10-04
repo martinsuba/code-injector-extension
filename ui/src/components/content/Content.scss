@@ -1,0 +1,39 @@
+.no-items {
+  margin: 20px;
+  font-weight: 600;
+}
+
+.save-indicator {
+  position: absolute;
+  top: 12px;
+  right: 27px;
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  opacity: 0;
+  transition: opacity .3s ease-in-out;
+
+  &.animate {
+    opacity: 1;
+  }
+}
+.save-indicator:after {
+  content: " ";
+  display: block;
+  width: 15px;
+  height: 15px;
+  margin: 1px;
+  border-radius: 50%;
+  border: 2px solid #c5c8c6;
+  border-color: #c5c8c6 transparent #c5c8c6 transparent;
+  animation: save-animation 1.2s linear infinite;
+}
+
+@keyframes save-animation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

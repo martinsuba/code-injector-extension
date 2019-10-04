@@ -17,7 +17,6 @@ class App extends Component {
   }
 
   render() {
-    // TODO: build preloader
     if (this.props.codes.loading) {
       return <Preloader />;
     }

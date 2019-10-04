@@ -81,6 +81,7 @@ class Code extends Component {
     };
 
     this.props.editCode(newCode);
+    this.props.onSave();
   }
 
   render() {
