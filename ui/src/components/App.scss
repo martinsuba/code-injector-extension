@@ -5,8 +5,13 @@
 }
 
 .sidebar {
-  width: 300px;
+  width: 20%;
+  min-width: 150px;
   background-color: #262830;
+
+  @media only screen and (min-width: 992px) {
+    width: 300px;
+  }
 }
 
 .content {
