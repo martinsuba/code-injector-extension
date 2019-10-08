@@ -10,4 +10,4 @@ cd ../extension && npm i && npm run build
 ```
 
 ## Screenshot
-![Code Injector screenshot](/martinsuba/code-injector-extension/blob/master/screenshot.png?raw=true) "Code Injector screenshot")
+![Code Injector screenshot](/screenshot.png?raw=true) "Code Injector screenshot")
