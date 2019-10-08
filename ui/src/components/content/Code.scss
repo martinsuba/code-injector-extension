@@ -170,12 +170,21 @@
 
   .content-input {
     flex: 1;
-    margin: 0 20px 20px;
+    margin: 0 20px;
     padding-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .content-wrapper {
+    flex: 1 0 0;
+    flex-basis: 0;
+    overflow: auto;
   }
 
   #content {
     transition: background-color .3s ease-in-out;
+    min-height: 100%;
 
     &:hover {
       background-color: lighten(#262830, 3%) !important;
@@ -193,6 +202,36 @@
       display: block;
       font-size: 12px;
       margin-bottom: 5px;
+    }
+  }
+
+  .code-switch {
+    margin: 15px 0;
+
+    label {
+      display: inline-block;
+
+      input[type=radio] {
+        display: none;
+
+        &:checked + span {
+          color: #96CBFE;
+          background: lighten(#262830, 3%);
+          border-color: #96CBFE;
+        }
+      }
+
+      span {
+        border-top: 2px solid #262830;
+        background: #262830;
+        padding: 5px 15px;
+        cursor: pointer;
+        transition: background-color .3s ease-in-out;
+
+        &:hover {
+          background: lighten(#262830, 3%);
+        }
+      }
     }
   }
 }

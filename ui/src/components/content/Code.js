@@ -4,6 +4,7 @@ import Editor from 'react-simple-code-editor';
 import { highlight, languages } from 'prismjs/components/prism-core';
 import 'prismjs/components/prism-clike';
 import 'prismjs/components/prism-javascript';
+import 'prismjs/components/prism-css';
 
 import { editCode } from '../../actions/code-actions';
 import { debounce } from '../../utils';
@@ -21,6 +22,7 @@ class Code extends Component {
     this.state = {
       content: props.code.content,
       site: props.code.site,
+      type: props.code.type,
     };
 
     this.saveContentDebounced = debounce(this.saveContent, 1000);
@@ -59,16 +61,16 @@ class Code extends Component {
   handleCodeChange(event) {
     const { name, value } = event.target;
     this.setState({ [name]: value }, () => {
-      const { content, site } = this.state;
+      const { content, site, type } = this.state;
       const { code } = this.props;
       if (!this.isSiteValid(site)) {
         return;
       }
-      this.saveContentDebounced({ content, site }, code);
+      this.saveContentDebounced({ content, site, type }, code);
     });
   }
 
-  saveContent({ content, site }, code) {
+  saveContent({ content, site, type }, code) {
     if (code.id !== this.props.code.id) {
       code.active = false;
     }
@@ -77,6 +79,7 @@ class Code extends Component {
       ...code,
       content,
       site,
+      type,
       updatedAt: Date.now(),
     };
 
@@ -99,21 +102,44 @@ class Code extends Component {
         </div>
         <div className="content-input">
           <label htmlFor="content">Code:</label>
-          <Editor
-            id="content"
-            name="content"
-            onValueChange={code => this.handleCodeChange({ target: { value: code, name: 'content' } })}
-            value={this.state.content}
-            highlight={code => highlight(code, languages.js)}
-            padding={10}
-            style={{
-              fontFamily: 'Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace',
-              fontSize: 13,
-              backgroundColor: '#262830',
-              fontWeight: 600,
-              height: '100%',
-            }}
-          />
+          <div className="code-switch">
+            <label>
+              <input
+                type="radio"
+                name="type"
+                value="js"
+                checked={this.state.type === 'js'}
+                onChange={this.handleCodeChange}
+              />
+              <span>JS</span>
+            </label>
+            <label>
+              <input
+                type="radio"
+                name="type"
+                value="css"
+                checked={this.state.type === 'css'}
+                onChange={this.handleCodeChange}
+              />
+              <span>CSS</span>
+            </label>
+          </div>
+          <div className="content-wrapper">
+            <Editor
+              id="content"
+              name="content"
+              onValueChange={code => this.handleCodeChange({ target: { value: code, name: 'content' } })}
+              value={this.state.content}
+              highlight={code => highlight(code, languages[this.state.type || 'js'])}
+              padding={10}
+              style={{
+                fontFamily: 'Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace',
+                fontSize: 13,
+                backgroundColor: '#262830',
+                fontWeight: 600,
+              }}
+            />
+          </div>
         </div>
       </Fragment>
     );

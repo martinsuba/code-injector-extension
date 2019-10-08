@@ -23,6 +23,7 @@ class Add extends Component {
     const newCode = {
       id: uuidv4(),
       site: 'new site',
+      type: 'js',
       createdAt: Date.now(),
       updatedAt: null,
       active: false,
