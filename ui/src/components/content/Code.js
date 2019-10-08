@@ -37,6 +37,7 @@ class Code extends Component {
       this.setState({
         content: this.props.code.content,
         site: this.props.code.site,
+        type: this.props.code.type,
       });
     }
   }
