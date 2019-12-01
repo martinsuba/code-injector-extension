@@ -22,6 +22,7 @@ class Code extends Component {
     this.state = {
       content: props.code.content,
       site: props.code.site,
+      title: props.code.title,
       type: props.code.type,
     };
 
@@ -37,6 +38,7 @@ class Code extends Component {
       this.setState({
         content: this.props.code.content,
         site: this.props.code.site,
+        title: this.props.code.title,
         type: this.props.code.type,
       });
     }
@@ -62,16 +64,22 @@ class Code extends Component {
   handleCodeChange(event) {
     const { name, value } = event.target;
     this.setState({ [name]: value }, () => {
-      const { content, site, type } = this.state;
+      const {
+        content, site, title, type,
+      } = this.state;
       const { code } = this.props;
       if (!this.isSiteValid(site)) {
         return;
       }
-      this.saveContentDebounced({ content, site, type }, code);
+      this.saveContentDebounced({
+        content, site, title, type,
+      }, code);
     });
   }
 
-  saveContent({ content, site, type }, code) {
+  saveContent({
+    content, site, title, type,
+  }, code) {
     if (code.id !== this.props.code.id) {
       code.active = false;
     }
@@ -80,6 +88,7 @@ class Code extends Component {
       ...code,
       content,
       site,
+      title,
       type,
       updatedAt: Date.now(),
     };
@@ -91,6 +100,15 @@ class Code extends Component {
   render() {
     return (
       <Fragment>
+        <div className="title-input">
+          <label htmlFor="title">Title:</label>
+          <input
+            id="title"
+            name="title"
+            onChange={this.handleCodeChange}
+            value={this.state.title}
+          />
+        </div>
         <div className="site-input">
           <label htmlFor="site">Site:</label>
           <input

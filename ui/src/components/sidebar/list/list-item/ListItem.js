@@ -54,7 +54,7 @@ class ListItem extends Component {
         key={this.props.code.id}
       >
         <span className="code-title">
-          {this.props.code.site}
+          {this.props.code.title}
         </span>
         <span className="code-options">
           <button className="button-delete" onClick={this.delete} type="button">

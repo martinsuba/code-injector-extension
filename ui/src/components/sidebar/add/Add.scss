@@ -1,6 +1,9 @@
 $button-color: lighten(#131418, 5%);
 
 .add-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   height: 50px;
   background: $button-color;
@@ -10,6 +13,12 @@ $button-color: lighten(#131418, 5%);
 
   &:hover {
     background-color: darken($button-color, 2%);
+  }
+
+  > span {
+    color: #c5c8c6;
+    font-weight: 600;
+    margin-right: 5px;
   }
 
   svg {

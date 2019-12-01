@@ -16,7 +16,9 @@ export default async function injectCode({ url, tabId }) {
   const codes = await loadCodes();
 
   codes.forEach(({ site, content, type }) => {
-    if (url.includes(site)) {
+    const siteArray = site.split(',');
+    const urlMatch = siteArray.some(siteString => url.includes(siteString.trim()));
+    if (urlMatch) {
       executeScript({ tabId, content, type });
     }
   });

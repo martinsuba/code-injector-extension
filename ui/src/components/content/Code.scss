@@ -153,7 +153,8 @@
     color: #c5c8c6;
   }
 
-  input[name="site"] {
+  input[name="site"],
+  input[name="title"] {
     font-size: 12px;
     padding: 10px;
     font-weight: 600;
@@ -191,11 +192,17 @@
     }
   }
 
-  .site-input {
+  .site-input,
+  .title-input {
     margin: 20px;
   }
 
+  .site-input {
+    margin-top: 0;
+  }
+
   .site-input,
+  .title-input,
   .content-input {
     label {
       font-weight: 600;

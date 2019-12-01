@@ -22,7 +22,8 @@ class Add extends Component {
 
     const newCode = {
       id: uuidv4(),
-      site: 'new site',
+      site: 'add domains separated by comma (example: "twitter.com, facebook, github.com/martinsuba")',
+      title: 'new code',
       type: 'js',
       createdAt: Date.now(),
       updatedAt: null,
@@ -36,6 +37,7 @@ class Add extends Component {
   render() {
     return (
       <button type="submit" className="add-button" onClick={this.handleSubmit}>
+        <span>Add code</span>
         <PlusCircle />
       </button>
     );
