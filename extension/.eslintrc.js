@@ -12,6 +12,7 @@ module.exports = {
     'import/no-extraneous-dependencies': ['error', {
       'devDependencies': [
         '**/webpack.config.js',
+        '**/taskfile.js',
         '**/tasks/*'
       ]
     }],

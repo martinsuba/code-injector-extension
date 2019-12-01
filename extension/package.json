@@ -5,7 +5,8 @@
   "main": ".eslintrc.js",
   "scripts": {
     "lint": "eslint --ignore-path .gitignore .",
-    "build": "npm run clean && node ./taskfile.js",
+    "build:development": "npm run clean && node ./taskfile.js  --mode=development",
+    "build:production": "npm run clean && node ./taskfile.js --mode=production",
     "clean": "del-cli build"
   },
   "devDependencies": {
@@ -21,7 +22,8 @@
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.14.0",
     "execa": "^1.0.0",
-    "webpack": "^4.25.1"
+    "webpack": "^4.25.1",
+    "yargs": "^15.0.2"
   },
   "dependencies": {}
 }

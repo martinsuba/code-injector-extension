@@ -1,9 +1,9 @@
 const webpack = require('webpack');
 const webpackConfig = require('../webpack.config.js');
 
-module.exports = function buildExtension() {
+module.exports = function buildExtension(mode) {
   return new Promise((resolve, reject) => {
-    webpack(webpackConfig, (err, stats) => {
+    webpack(webpackConfig(mode), (err, stats) => {
       if (err) {
         reject(err);
       } else {

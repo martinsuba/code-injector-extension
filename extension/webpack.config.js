@@ -44,8 +44,8 @@ const plugins = [
   ])
 ];
 
-module.exports = {
-  mode: 'none',
+module.exports = mode => ({
+  mode,
   context: path.resolve(__dirname, 'src'),
   entry: {
     background: './background.js',
@@ -68,4 +68,4 @@ module.exports = {
       jsLoader
     ]
   }
-};
+});
