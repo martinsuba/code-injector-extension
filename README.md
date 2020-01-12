@@ -2,6 +2,13 @@
 
 Chrome extension for JS & CSS code injection into the specified websites. Contains tab UI for code management written in [React](https://reactjs.org/). App is using [Redux](https://redux.js.org/) for state management and stores state in chrome extension storage.
 
+## Features
+
+:heavy_check_mark: injects JS and CSS code into website specified by domain match
+:heavy_check_mark: supports jQuery v3.4.1
+:heavy_check_mark: tab UI for script management
+:heavy_check_mark: simple code editor with JS/CSS text highlight
+
 ## Build
 ```
 git clone https://github.com/martinsuba/code-injector-extension

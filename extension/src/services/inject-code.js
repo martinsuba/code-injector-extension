@@ -6,7 +6,9 @@ function executeScript({ tabId, content, type }) {
   };
 
   if (type === 'js') {
-    chrome.tabs.executeScript(tabId, details);
+    chrome.tabs.executeScript(tabId, { file: 'jquery.min.js' }, () => {
+      chrome.tabs.executeScript(tabId, details);
+    });
   } else {
     chrome.tabs.insertCSS(tabId, details);
   }

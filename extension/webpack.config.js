@@ -26,6 +26,11 @@ const plugins = [
       from: './background.html',
       to: './',
       toType: 'dir'
+    },
+    {
+      from: './jquery.min.js',
+      to: './',
+      toType: 'dir'
     }
   ]),
   new CopyWebpackPlugin([
