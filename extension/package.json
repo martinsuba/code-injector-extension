@@ -25,5 +25,7 @@
     "webpack": "^4.41.5",
     "yargs": "^15.1.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "extension-storage-promise": "0.0.1"
+  }
 }

@@ -1,17 +1,12 @@
+import { syncStorage } from 'extension-storage-promise';
+
 const STORAGE_NAME = 'SE_STATE';
 
 export async function loadCodes() {
-  return new Promise((resolve, reject) => {
-    try {
-      window.chrome.storage.sync.get(STORAGE_NAME, ({ [STORAGE_NAME]: state }) => {
-        if (state == null) {
-          resolve([]);
-        } else {
-          resolve(state.codes.items);
-        }
-      });
-    } catch (err) {
-      reject(err);
-    }
-  });
+  const state = await syncStorage.getOneRecord(STORAGE_NAME);
+  if (state == null) {
+    return [];
+  }
+
+  return state.codes.items;
 }

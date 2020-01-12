@@ -1,3 +1,4 @@
+import { syncStorage } from 'extension-storage-promise';
 import { fetchCodes, fetchCodesPending, fetchCodesError } from '../actions/code-actions';
 
 const STORAGE_NAME = 'SE_STATE';
@@ -21,24 +22,18 @@ const initialState = {
 // };
 
 async function loadState() {
-  return new Promise((resolve, reject) => {
-    try {
-      window.chrome.storage.sync.get(STORAGE_NAME, ({ [STORAGE_NAME]: state }) => {
-        if (state == null) {
-          resolve(initialState);
-        }
-        resolve(state);
-      });
-    } catch (err) {
-      reject(err);
-      // resolve(stateMock);
-    }
-  });
+  const state = await syncStorage.getOneRecord(STORAGE_NAME);
+  if (state == null) {
+    return initialState;
+  }
+
+  return state;
+  // return stateMock
 }
 
-export function saveState(state) {
+export async function saveState(state) {
   try {
-    window.chrome.storage.sync.set({ [STORAGE_NAME]: state });
+    await syncStorage.setOneRecord(STORAGE_NAME, state);
   } catch (err) {
     console.error(err);
   }

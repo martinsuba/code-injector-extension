@@ -4,6 +4,7 @@
   "homepage": "./",
   "private": true,
   "dependencies": {
+    "extension-storage-promise": "0.0.1",
     "prismjs": "^1.17.1",
     "react": "^16.8.2",
     "react-dom": "^16.8.2",
