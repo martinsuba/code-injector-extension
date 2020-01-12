@@ -16,13 +16,13 @@
     "@babel/runtime": "^7.5.5",
     "babel-loader": "^8.0.4",
     "babel-plugin-lodash": "^3.2.11",
-    "copy-webpack-plugin": "^4.6.0",
+    "copy-webpack-plugin": "^5.1.1",
     "del-cli": "^2.0.0",
     "eslint": "^5.9.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.14.0",
     "execa": "^1.0.0",
-    "webpack": "^4.25.1",
+    "webpack": "^4.41.5",
     "yargs": "^15.0.2"
   },
   "dependencies": {}
