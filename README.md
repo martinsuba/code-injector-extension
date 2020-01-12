@@ -4,9 +4,9 @@ Chrome extension for JS & CSS code injection into the specified websites. Contai
 
 ## Features
 
-:heavy_check_mark: injects JS and CSS code into website specified by domain match
-:heavy_check_mark: supports jQuery v3.4.1
-:heavy_check_mark: tab UI for script management
+:heavy_check_mark: injects JS and CSS code into website specified by domain match<br>
+:heavy_check_mark: supports jQuery v3.4.1<br>
+:heavy_check_mark: tab UI for script management<br>
 :heavy_check_mark: simple code editor with JS/CSS text highlight
 
 ## Build
