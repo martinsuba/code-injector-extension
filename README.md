@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/martinsuba/code-injector-extension.svg?branch=master)](https://travis-ci.org/martinsuba/code-injector-extension)
+
 # code-injector-extension
 
 Chrome extension for JS & CSS code injection into the specified websites. Contains tab UI for code management written in [React](https://reactjs.org/). App is using [Redux](https://redux.js.org/) for state management and stores state in chrome extension storage.
