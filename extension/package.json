@@ -4,7 +4,7 @@
   "description": "Extension for JS & style injecting into the speicified website.",
   "main": ".eslintrc.js",
   "scripts": {
-    "lint": "eslint --ignore-path .gitignore .",
+    "lint": "eslint --ignore-path ../.eslintignore .",
     "build:development": "npm run clean && node ./taskfile.js  --mode=development",
     "build:production": "npm run clean && node ./taskfile.js --mode=production",
     "clean": "del-cli build"
