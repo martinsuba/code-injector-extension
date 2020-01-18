@@ -7,6 +7,31 @@ const initialState = {
   items: [],
 };
 
+function splitRecord(key, record) {
+  let stringRecord = JSON.stringify(record);
+  let i = 0;
+  const storageObj = {};
+
+  // split stringRecord into chunks and store them in an object indexed by `key_i`
+  while (stringRecord.length > 0) {
+    const index = `${key}_${i++}`;
+
+    const valueLength = window.chrome.storage.sync.QUOTA_BYTES_PER_ITEM - index.length - 50;
+    let adjustedValueLength = valueLength;
+    let segment = stringRecord.substr(0, valueLength);
+
+    while (JSON.stringify(segment).length > valueLength) {
+      adjustedValueLength -= 100;
+      segment = stringRecord.substr(0, adjustedValueLength);
+    }
+
+    storageObj[index] = segment;
+    stringRecord = stringRecord.substr(valueLength);
+  }
+
+  return storageObj;
+}
+
 // NOTE: for developing UI without extension storage
 // const stateMock = {
 //   codes: {
@@ -21,8 +46,19 @@ const initialState = {
 //   },
 // };
 
+function getNumberFromRecord(name) {
+  return Number(name.substr(STORAGE_NAME.length + 1));
+}
+
 async function loadState() {
-  const state = await syncStorage.getOneRecord(STORAGE_NAME);
+  const storage = await syncStorage.getAllRecords();
+  const values = Object.entries(storage)
+    .filter(entry => entry[0].includes(`${STORAGE_NAME}_`))
+    .sort((a, b) => getNumberFromRecord(a[0]) - getNumberFromRecord(b[0]))
+    .map(entry => entry[1]);
+
+  const state = JSON.parse(values.join(''));
+
   if (state == null) {
     return initialState;
   }
@@ -33,7 +69,14 @@ async function loadState() {
 
 export async function saveState(state) {
   try {
-    await syncStorage.setOneRecord(STORAGE_NAME, state);
+    const records = splitRecord(STORAGE_NAME, state);
+    const storage = await syncStorage.getAllRecords();
+    const existingKeys = Object.entries(storage)
+      .filter(entry => entry[0].includes(`${STORAGE_NAME}_`))
+      .map(entry => entry[0]);
+
+    await syncStorage.removeRecords(existingKeys);
+    await syncStorage.setRecords(records);
   } catch (err) {
     console.error(err);
   }
