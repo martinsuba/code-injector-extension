@@ -15,7 +15,7 @@ Chrome extension for JS & CSS code injection into the specified websites. Contai
 ```
 git clone https://github.com/martinsuba/code-injector-extension
 cd code-injector-extension/ui && npm i
-cd ../extension && npm i && npm run build
+cd ../extension && npm i && npm run build:production
 ```
 
 ## Screenshot
