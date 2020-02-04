@@ -1,8 +1,9 @@
 {
   "manifest_version": 2,
-  "name": "code-injector",
+  "name": "Code Injector",
   "description": "Extension for JS & style injecting into the specified website.",
   "version": "0.0.1",
+  "author": "Martin Suba",
   "background": {
     "page": "background.html",
     "persistent": true
@@ -11,7 +12,7 @@
     "default_icon": {
       "64": "icons/icon64.png"
     },
-    "default_title": "Open the Code Injector UI"
+    "default_title": "Open the Code Injector in tab"
   },
   "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
   "permissions": [
@@ -33,7 +34,9 @@
     }
   ],
   "icons": {
+    "16": "icons/icon16.png",
     "32": "icons/icon32.png",
-    "64": "icons/icon64.png"
+    "64": "icons/icon64.png",
+    "128": "icons/icon128.png"
   }
 }
