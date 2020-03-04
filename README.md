@@ -1,3 +1,4 @@
+[![Chrome Web Store](https://img.shields.io/chrome-web-store/v/mmngbmmjfjannofkffhoindghfbhcool)](https://chrome.google.com/webstore/detail/code-injector/mmngbmmjfjannofkffhoindghfbhcool)
 [![Build Status](https://travis-ci.org/martinsuba/code-injector-extension.svg?branch=master)](https://travis-ci.org/martinsuba/code-injector-extension)
 
 # code-injector-extension
